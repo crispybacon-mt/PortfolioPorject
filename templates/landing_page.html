@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale1.0">
+  <meta name="description" content="Free Uncensored News App">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Python">
+  <meta name="author" content="Nate Olsen">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Home Page</title>
+  <style>
+    /* CSS styles for the home page */
+    body {
+      font-family: Arial, sans-serif;
+      background-image: linear-gradient(to top, red, white, blue);
+      margin: 0;
+      padding: 20px;
+    }
+
+    .header-container {
+    display: flex;
+    color: rgb(1, 1, 1);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+    h1 {
+      color: rgb(0, 0, 0);
+    }
+
+    h3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .registration-container {
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 40px;
+    }
+
+    .registration-title {
+      font-size: 24px;
+      margin-bottom: 10px;
+      color: rgb(0, 0, 0);
+    }
+
+    .registration-form {
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+  .registration-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+  .registration-form input[type="text"],
+  .registration-form input[type="password"],
+  .registration-form input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+
+    .registration-form input[type="submit"] {
+      background-color: blue;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .login-container {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .login-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: rgb(0, 0, 0);
+  }
+
+  .login-form {
+    display: inline-block;
+    text-align: left;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    margin: 0 auto;
+    width: 300px;
+    box-sizing: border-box;
+  }
+
+  .login-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .login-form input[type="text"],
+  .login-form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .login-form input[type="submit"] {
+    background-color: blue;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+
+    .content-container {
+      text-align: center;
+    }
+
+    .article {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .article-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      cursor: pointer;
+      color: rgb(2, 1, 1);
+    }
+
+    .article-description {
+      color: #555;
+    }
+
+    .video {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .video-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+      cursor: pointer;
+      color: black;
+    }
+
+    .video-description {
+      color: #555;
+    }
+
+    /*
+    .slideshow {
+      position: relative;
+      height: 400px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+   
+
+    .slideshow img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+    }
+    .slideshow img.active {
+      opacity: 1;
+    }
+
+    /* carousel animation */
+    /*
+    @keyframes carousel {
+      0% {
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    .slideshow img:nth-child(1) {
+      animation: carousel 12s infinite;
+    }
+
+    .slideshow img:nth-child(2) {
+      animation: carousel 12s infinite;
+    }
+
+    .slideshow img:nth-child(3) {
+      animation: carousel 12s infinite;
+    }
+
+    .slideshow img:nth-child(4) {
+      animation: carousel 12s infinite;
+    }
+    */
+
+
+  </style>
+
+</head>
+<body>
+  <div class="login-container">
+    <h3 class="login-title">Login to Your Account</h3>
+    <form class="login-form" action="login.html" method="post">
+      <div>
+        <label for="login-username">Username:</label>
+        <input type="text" id="login-username" name="login-username" required>
+      </div>
+      <div>
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" name="login-password" required>
+      </div>
+      <div>
+        <input type="submit" value="Login">
+      </div>
+    </form>
+  </div>  
+  <header>
+    <div class="header-container">
+      <h1><b>Welcome to The Uncensored Daily News Site</b></h1>
+      <br>
+      <h2>
+        <p>In a world where governments often control the flow of information, keeping citizens in the dark while the elites advance their globalist agenda, our news app is designed to empower you.</p>
+        <p>Tailored to your interests, it delivers current and breaking news on topics that matter to you, ensuring you stay well-informed amidst the sea of censorship.</p>
+      </h2>
+      <div>
+        <img src="/imgs/image.jpg" alt="Global Event 1" class="active">
+      </div>
+    </div>
+   
+  </header>
+
+  <div class="registration-container">
+    <h3 class="registration-title">Register Here to Curate Your Own News Feed</h3>
+    <form class="registration-form" action="home.html" method="post">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+      </div>
+      <div>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div>
+        <input type="submit" value="Register">
+      </div>
+    </form>
+  </div>
+  <br>
+  
+  <h3><b>Cuurent Events around the World Today</b></h3>
+
+  <div class="content-container" id="content-container"></div>
+
+  <script>
+    // JS code for carousel effect
+
+    // JavaScript code to fetch and display general content
+    const apiKey = '9ad15860ec644be8a8fefd37f413bb50'; // API key for newsapi.org
+    const contentContainer = document.getElementById('content-container');
+
+    // Fetch articles and videos from the News API
+    fetch(`https://newsapi.org/v2/top-headlines?country=us&apiKey=${'9ad15860ec644be8a8fefd37f413bb50'}`)
+      .then(response => response.json())
+      .then(data => {
+        // Display articles
+        data.articles.forEach(article => {
+          const articleElement = document.createElement('div');
+          articleElement.classList.add('article');
+
+          const articleTitle = document.createElement('h2');
+          articleTitle.classList.add('article-title');
+          articleTitle.textContent = article.title;
+          articleTitle.addEventListener('click', () => {
+            window.open(article.url, '_blank');
+          });
+
+          const articleDescription = document.createElement('p');
+          articleDescription.classList.add('article-description');
+          articleDescription.textContent = article.description;
+
+          articleElement.appendChild(articleTitle);
+          articleElement.appendChild(articleDescription);
+
+          contentContainer.appendChild(articleElement);
+        });
+
+        // Display videos
+        data.articles.slice(0, 3).forEach(article => {
+          const videoElement = document.createElement('div');
+          videoElement.classList.add('video');
+
+          const videoTitle = document.createElement('h2');
+          videoTitle.classList.add('video-title');
+          videoTitle.textContent = article.title;
+          videoTitle.addEventListener('click', () => {
+            window.open(article.url, '_blank');
+          });
+
+          const videoDescription = document.createElement('p');
+          videoDescription.classList.add('video-description');
+          videoDescription.textContent = article.description;
+
+          videoElement.appendChild(videoTitle);
+          videoElement.appendChild(videoDescription);
+
+          contentContainer.appendChild(videoElement);
+        });
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+    // Assuming you have a JavaScript function for registration validation
+    function validateRegistration() {
+      // Implement your validation logic here
+      return true; // Return true if registration is successful
+    }
+
+    const form = document.querySelector('form');
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      if (validateRegistration()) {
+        // Redirect to account homepage
+        window.location.href = 'home.html';
+      }
+    });
+  </script>
+  <foote class="footer">
+    <p>© 2023 My News Portal. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
+

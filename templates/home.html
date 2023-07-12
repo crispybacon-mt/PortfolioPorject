@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale1.0">
+  <meta name="description" content="Free Uncensored News App">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Python">
+  <meta name="author" content="Nate Olsen">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Home Page</title>
+  <script src="event.js"></script>
+  <style>
+    /* CSS styles for the home page */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .slideshow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    .slideshow img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .preferences-form {
+      margin-bottom: 20px;
+    }
+
+    .preferences-form label,
+    .preferences-form input,
+    .preferences-form h3 {
+      color: rgb(250, 250, 250);
+    }
+
+    .preferences-form input[type="text"] {
+      width: 400px;
+      color: black;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .preferences-form input[type="submit"] {
+      background-color: #4CAF50;
+      color: #ffffff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .preferences-form input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .search-container input[type="text"] {
+      width: 400px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    .search-container input[type="submit"] {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .search-container input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .news-container {
+      margin-top: 20px;
+    }
+
+    .news-item {
+      margin-bottom: 20px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+
+    .news-item:hover {
+      background-color: #f9f9f9;
+    }
+
+    .news-title {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .news-description {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1 style="color: white;">My Daily News</h1>
+    <nav class="navbar">
+      <div class="dropdown">
+        <button class="dropbtn">Menu</button>
+        <div class="dropdown-content">
+          <a href="landing_page.html">Main</a>
+          <a href="home.html">Home</a>
+          <a href="settings.html">Settings Page</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="slideshow">
+    <img src="/imgs/unnamed.jpg" alt="Global Event 1">
+    <img src="/imgs/image.jpg" alt="Global Event 2">
+    <img src="/imgs/OIP.jpeg" alt="Global Event 3">
+    <img src="/imgs/image4.jpg" alt="Global Event 4">
+  </div>
+
+  <div class="container">
+    <div class="preferences-form">
+      <h3></h3>
+      <form id="preferences-form">
+        <label for="preferences">Enter your preference:</label>
+        <input type="text" id="preferences" name="preferences" required>
+        <input type="submit" value="Save Preferences">
+      </form>
+    </div>
+  
+    <div class="search-container">
+      <input type="text" id="search-input">
+      <input type="submit" value="Search" onclick="searchNews()">
+    </div>
+  </div>
+
+  <div class="news-container" id="news-container"></div>
+  <script src="event.js"></script>
+
+  <script>
+    // JS code for handling the preferences form submission
+    document.getElementById('preferences-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the form from submitting via page refresh
+
+      // Get the preference value from the input field
+      const preferenceInput = document.getElementById('preferences');
+      const preferenceValue = preferenceInput.value;
+
+      //Send the preference value from the input field
+      fetch('/preferences', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: 123,
+          preferences: preferenceValue
+        })
+      })
+      .then(response => response.text())
+      .then(result => {
+        console.log(results); //Log the response from server
+        //Reset the form after submission
+        preferenceInput.value ='';
+      })
+      .catch(error => {
+        console.error('Error saving preferences:', error);
+      });
+      
+      // Reset the form after submission
+      preferenceInput.value = '';
+    });
+
+    // JavaScript code for handling the search functionality
+    function searchNews() {
+      const apiKey = '9ad15860ec644be8a8fefd37f413bb50'; // API key for newsapi.org
+      const searchInput = document.getElementById('search-input').value;
+      const preferenceValue = localStorage.getItem('preferences'); // Retrieve the stored preference value
+
+      // Append the preference value to the API request URL
+      const url = `https://newsapi.org/v2/everything?q=${searchInput}+${preferenceValue}&apiKey=${'9ad15860ec644be8a8fefd37f413bb50'}`;
+
+      // Perform the API request here using the provided API key and search input
+      // You can use JavaScript's Fetch API or any other HTTP library to send the request
+
+      // Example using Fetch API
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          // Handle the response data here
+          // You can display the news results or perform any other actions
+          const newsContainer = document.getElementById('news-container');
+          newsContainer.innerHTML = ''; // Clear previous results
+
+          data.articles.forEach(article => {
+            const newsItem = document.createElement('div');
+            newsItem.classList.add('news-item');
+
+            const newsTitle = document.createElement('h2');
+            newsTitle.classList.add('news-title');
+            newsTitle.textContent = article.title;
+
+            const newsDescription = document.createElement('p');
+            newsDescription.classList.add('news-description');
+            newsDescription.textContent = article.description;
+
+            // Add event listener to open the article URL in a new tab
+            newsItem.addEventListener('click', () => {
+              window.open(article.url, '_blank');
+            });
+
+            newsItem.appendChild(newsTitle);
+            newsItem.appendChild(newsDescription);
+
+            newsContainer.appendChild(newsItem);
+          });
+        })
+        .catch(error => {
+          // Handle any errors that occur during the API request
+          console.error(error);
+        });
+    }
+  </script>
+  <footer class="footer">
+    <p>© My News Portal. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale1.0">
+  <meta name="description" content="Free Uncensored News App">
+  <meta name="keywords" content="HTML, CSS, JavaScript, Python">
+  <meta name="author" content="Nate Olsen">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Settings</title>
+</head>
+<body>
+  <header>
+    <h1>Settings</h1>
+    <nav class="navbar">
+      <div class="dropdown">
+        <button class="dropbtn">Account</button>
+        <div class="dropdown-content">
+          <a href="landing_page.html">Main</a>
+          <a href="home.html">Home</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+  
+  <section>
+    <h2>Change Password</h2>
+    <!-- Password change form -->
+    <form id="password-form">
+      <!-- form fields -->
+      <input type="password" id="current-password" placeholder="Current Password">
+      <input type="password" id="new-password" placeholder="New Password">
+      <input type="password" id="confirm-password" placeholder="Confirm New Password">
+      <button type="submit">Change Password</button>
+    </form>
+  </section>
+  
+  <section>
+    <h2>Update Username</h2>
+    <!-- Username update form -->
+    <form id="username-form">
+      <!-- form fields -->
+      <input type="text" id="new-username" placeholder="New Username">
+      <button type="submit">Update Username</button>
+    </form>
+  </section>
+  
+  <section>
+    <h2>Update Email</h2>
+    <!-- Email update form -->
+    <form id="email-form">
+      <!-- form fields -->
+      <input type="email" id="new-email" placeholder="New Email">
+      <button type="submit">Update Email</button>
+    </form>
+  </section>
+  <script>
+    // JavaScript code to handle form submissions
+document.getElementById('password-form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Get form values
+  const currentPassword = document.getElementById('current-password').value;
+  const newPassword = document.getElementById('new-password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
+
+  // Perform validation
+  if (currentPassword === '' || newPassword === '' || confirmPassword === '') {
+    alert('Please fill in all fields');
+    return;
+  }
+
+  if (newPassword !== confirmPassword) {
+    alert('New password and confirm password must match');
+    return;
+  }
+
+  // Perform password requirements validation
+  const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,25}$/;
+  if (!passwordRegex.test(newPassword)) {
+    alert('Password must be between 8 and 25 characters and include at least one number, one uppercase letter, and one special character (!@#$%^&*)');
+    return;
+  }
+
+  // Perform password change logic here
+  // You can use JavaScript fetch() or AJAX to send the data to the server-side endpoint
+
+  // Example using fetch()
+  fetch('/change-password', {
+    method: 'POST',
+    body: JSON.stringify({
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+    .then(response => {
+      // Handle the response
+      if (response.ok) {
+        // Password change successful, handle accordingly
+        console.log('Password changed successfully');
+      } else {
+        // Password change failed, handle accordingly
+        console.error('Password change failed');
+      }
+    })
+    .catch(error => {
+      // Handle any errors that occur during the request
+      console.error('An error occurred during password change:', error);
+    });
+});
+
+    
+    document.getElementById('email-form').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get form values
+      const newEmail = document.getElementById('new-email').value;
+
+      // Perform validation
+      if (newEmail === '') {
+        alert('Please enter a new email');
+        return;
+      }
+
+      // Perform email update logic here
+      // You can use JavaScript fetch() or AJAX to send the data to the server-side endpoint
+
+      // Example using fetch()
+      fetch('/update-email', {
+        method: 'POST',
+        body: JSON.stringify({
+          newEmail: newEmail
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          // Handle the response
+          if (response.ok) {
+            // Email update successful, handle accordingly
+            console.log('Email updated successfully');
+          } else {
+            // Email update failed, handle accordingly
+            console.error('Email update failed');
+          }
+        })
+        .catch(error => {
+          // Handle any errors that occur during the request
+          console.error('An error occurred during email update:', error);
+        });
+    });
+  </script>
+  <footer class="footer1">
+    <p>© My News Portal. All rights reserved.</p>
+  </footer>
+</body>
+</html>
