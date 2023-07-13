@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 # Database connection details
 db_connection = psycopg2.connect(
-    host="your_host",
-    port="your_port",
-    database="your_database",
-    user="your_username",
-    password="your_password"
+    host="localhost",
+    port="5433",
+    database="news_app",
+    user="postgres",
+    password="password"
 )
 
 @app.route('/register', methods=['GET', 'POST'])

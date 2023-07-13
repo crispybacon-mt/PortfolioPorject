@@ -8,11 +8,11 @@ app.secret_key = 'your_secret_key'
 
 # Database connection details
 db_connection = psycopg2.connect(
-    host="your_host",
-    port="your_port",
-    database="your_database",
-    user="your_username",
-    password="your_password"
+    host="localhost",
+    port="5433",
+    database="news_app",
+    user="postgres",
+    password="password"
 )
 
 @app.route('/home', methods=['GET', 'POST'])
