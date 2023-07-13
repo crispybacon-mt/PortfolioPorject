@@ -13,7 +13,7 @@ connection = psycopg2.connect(
     host="localhost",
     port="5433",
     database="news_app",
-    user="username",
+    user="postgres",
     password="password"
 )
 
