@@ -15,7 +15,7 @@ db_connection = psycopg2.connect(
     password="password"
 )
 
-@app.route('/home', methods=['GET', 'POST'])
+@app.route('/home.html', methods=['GET', 'POST'])
 def home():
     if 'user_id' not in session:
         return "You need to log in first."
@@ -46,7 +46,7 @@ def home():
         row = cursor.fetchone()
         preferences = json.loads(row[0]) if row else {}
 
-    return render_template('home.html', preferences=preferences)
+    return render_template('/home.html', preferences=preferences)
 
 if __name__ == '__main__':
     app.run()

@@ -14,7 +14,7 @@ db_connection = psycopg2.connect(
     password="password"
 )
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/landing_page.html', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
         username = request.form['username']

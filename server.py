@@ -1,7 +1,8 @@
 # pylint: disable-all
 import psycopg2
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
+import json
 
 load_dotenv()
 
@@ -30,9 +31,8 @@ def execute_sql_file(user):
 # Execute the SQL file to create the database schema and tables
 execute_sql_file('user.sql')
 
-
 # Define an API endpoint to handle the preference data
-@app.route('/preferences', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def save_preferences():
     """['Preferences saved successfully!', 'An error occurred while saving preferences.']"""
     # Retrieve the preference data from the request
@@ -85,7 +85,7 @@ def save_accounts():
         return "An error occurred while saving the account."
     
 # Define an API endpoint to retrieve the preferences for a specific user
-@app.route('/preferences/<int:user_id>', methods=['GET'])
+@app.route('/home/<int:user_id>', methods=['GET'])
 def get_preferences(user_id):
     """Preferences not found for the given user ID.', 'An error occurred while retrieving preferences."""
     
@@ -108,6 +108,11 @@ def get_preferences(user_id):
     except psycopg2.Error as error:
         print("Error retrieving preferences:", error)
         return "An error occurred while retrieving preferences."
+    
+# Define the route to serve the home.html file
+@app.route('/')
+def home():
+    return render_template('home.html')
 
 # Run the Flask web server
 if __name__ == '__main__':
