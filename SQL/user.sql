@@ -42,4 +42,36 @@ ALTER TABLE accounts
 ADD FOREIGN KEY (server_id) 
 REFERENCES web_server (server_id);
 
+CREATE OR REPLACE FUNCTION insert_into_profile()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO profile (name, dob, user_id)
+    VALUES (NEW.name, '01-01-2000', NEW.id);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER register_user_trigger
+AFTER INSERT ON "user"
+FOR EACH ROW
+EXECUTE FUNCTION insert_into_profile();
+
+CREATE OR REPLACE FUNCTION update_user_preferences()
+RETURNS TRIGGER AS $$
+BEGIN
+    UPDATE data
+    SET email = NEW.email,
+        password = NEW.password,
+        preferences = NEW.preferences
+    WHERE user_id = NEW.user_id;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER update_preferences_trigger
+AFTER UPDATE ON "user"
+FOR EACH ROW
+WHEN (NEW.preferences IS NOT NULL)
+EXECUTE FUNCTION update_user_preferences();
+
 
