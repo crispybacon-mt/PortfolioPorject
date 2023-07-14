@@ -45,7 +45,8 @@ def save_preferences():
         cursor = connection.cursor()
 
         # Insert the preference data into the 'data' table
-        cursor.execute("INSERT INTO data (user_id, preferences) VALUES (%s, %s)", (user_id, preferences))
+        cursor.execute("INSERT INTO data (user_id, preferences) VALUES (%s, %s) ON CONFLICT (user_id) DO UPDATE SET preferences = excluded.preferences", (user_id, preferences))
+        #cursor.execute("INSERT INTO data (user_id, preferences) VALUES (%s, %s)", (user_id, preferences))
 
         # Commit the changes to the database
         connection.commit()
@@ -108,11 +109,6 @@ def get_preferences(user_id):
     except psycopg2.Error as error:
         print("Error retrieving preferences:", error)
         return "An error occurred while retrieving preferences."
-    
-# Define the route to serve the home.html file
-@app.route('/')
-def home():
-    return render_template('home.html')
 
 # Run the Flask web server
 if __name__ == '__main__':
