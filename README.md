@@ -1,0 +1,7 @@
+- Title - ***News App***
+
+- Description - **News App that has users register an account. Users will be able to put a topic in the search bar on the home page and the api request will send out the request to the newsapi server. The results will then bring back all news articles with that topic mentioned in it. THe user is able to scroll and click on any article that will take them to the appropriate article. The landing page has general news content that is updated everyday displaying for the visitors to see the funcationality of the website. The users are able to save preferences in the preference tab on the home page, which is suppose to populate news content automatically on their home page as the landing page does with general content.**
+
+- API Reference Table - I used javascript. 
+
+- Retrospecitive *The project evolved to having a user save their preferences so that they would not need to redundantly search the same topic every time they logged in. I decided to use raw sql and build a postgres server that handles all the data. ***I am still having issues saving the user prefeerences and then being able to access it for a more streamlined user experience. At the end of my project, postgres server locked me out of my news_app database and i was unable to get back in. Postgres completlely locked me out of its main server off of my machine despite specifiying there was no password. 
