@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale1.0">
-    <meta name="description" content="Free Uncensored News App">
-    <meta name="keywords" content="HTML, CSS, JavaScript, Python">
-    <meta name="author" content="Nate Olsen">
-    <link rel="stylesheet" type="text/css" href="home.css">
-    <title>Home Page</title>
-</head>
-<style>
-    /* CSS styles for the home page */
+/* CSS styles for the home page */
 body {
     font-family: Arial, sans-serif;
     min-height: 100vh;
@@ -109,7 +97,45 @@ body {
     display: flex;
     gap: 20px;
   }
-
+  
+  .preferences-form,
+  .search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .preferences-form label,
+  .preferences-form input,
+  .preferences-form h3,
+  .search-container input[type="text"],
+  .search-container input[type="submit"] {
+    color: #fafafa;
+  }
+  
+  .preferences-form input[type="text"],
+  .search-container input[type="text"] {
+    width: 400px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .preferences-form input[type="submit"],
+  .search-container input[type="submit"] {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .preferences-form input[type="submit"]:hover,
+  .search-container input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  
   .news-container {
     display: flex;
     flex-direction: column;
@@ -271,58 +297,3 @@ body {
     transition: .2s ease;
 }
   
-</style>
-
-<body>
-    <h1>Home</h1>
-    <br/>
-    <header>
-        <h1 style="color: white;">My Daily News</h1>
-        <nav class="navbar">
-          <div class="dropdown">
-            <button class="dropbtn">Menu</button>
-            <div class="dropdown-content">
-              <a href="landing_page">Main</a>
-              <a href="home">Home</a>
-              <a href="settings">Settings Page</a>
-            </div>
-          </div>
-        </nav>
-      </header>
-      <br/>
-    <form>
-        <input type="text" name="q" placeholder="Search for article...">
-        <button type="submit">Search</button>
-    </form>
-
-    {% for article in articles %}
-    <div class="fruit">
-      <!-- Wrap the article title with an anchor tag that contains the article URL -->
-      <a href="{{ url_for('read_article', article_url=article.url) }}" target="_blank">
-        <h2>{{ article.title }}</h2>
-      </a>
-      <p>{{ article.description }}</p>
-    </div>
-  {% endfor %}
-
- 
-
-<!-- 
-    <h2>{{ fruits }}</h2>
-    <h3>{{ numbs }}</h3>
-
-    {% for fruit in fruits %}
-        <p class="fruit">
-            {{ fruit }}
-        </p>
-    {% endfor %}
-
-    {% for numb in numbs%}
-    <p class="number">
-        {{numb}}
-    </p>
-    
-    {%endfor%} -->
-
-</body>
-</html>
