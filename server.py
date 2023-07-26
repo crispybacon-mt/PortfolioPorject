@@ -31,6 +31,12 @@ def read_article():
     article_url = request.args.get('article_url')
     return redirect(article_url)
 
+@app.route('/search')
+def search():
+    query = request.args.get('q')
+    articles = search_news(query)
+    return jsonify(articles)
+
 # Configure the PostgreSQL connection
 # connection = psycopg2.connect(
 #     host="localhost",
