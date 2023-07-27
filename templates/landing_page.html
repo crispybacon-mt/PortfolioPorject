@@ -31,14 +31,14 @@
     </form>
     <div id="articles-container">
       {% for article in articles %}
-        <div class="fruit">
-          <!-- Wrap the article title with an anchor tag that contains the article URL -->
-          <a href="{{ url_for('read_article', article_url=article.url) }}" target="_blank">
-            <h2>{{ article.title }}</h2>
-          </a>
-          <p>{{ article.description }}</p>
-        </div>
-      {% endfor %}
+      <div class="fruit">
+        <!-- Wrap the article title with an anchor tag that contains the article URL -->
+        <a href="{{ url_for('read_article', article_url=article.url) }}" target="_blank">
+          <h2>{{ article.title }}</h2>
+        </a>
+        <p>{{ article.description }}</p>
+      </div>
+    {% endfor %}
     </div>
 
     {% for article in news_data %}

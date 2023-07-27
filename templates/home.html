@@ -11,28 +11,26 @@
 </head>
 
 <body>
-    <h1>Home</h1>
+    <h1>Welcome to The Uncensored Daily News Site</h1>
     <br/>
     <header>
-        <h1 style="color: white;">My Daily News</h1>
-        <nav class="navbar">
-          <div class="dropdown">
-            <button class="dropbtn">Menu</button>
-            <div class="dropdown-content">
-              <a href="landing_page">Main</a>
-              <a href="home">Home</a>
-              <a href="settings">Settings Page</a>
-            </div>
+        <header>
+          <div class="header-container">
+            <h2>
+              <p>In a world where governments often control the flow of information, keeping citizens in the dark while the elites advance their globalist agenda, our news app is designed to empower you.</p>
+              <p>Tailored to your interests, it delivers current and breaking news on topics that matter to you, ensuring you stay well-informed amidst the sea of censorship.</p>
+            </h2>
           </div>
-        </nav>
+        </header>
       </header>
       <br/>
     <form>
         <input type="text" name="q" placeholder="Search for article...">
         <button type="submit">Search</button>
     </form>
+    <br/>
 
-    {% for article in articles %}
+  {% for article in articles %}
     <div class="fruit">
       <!-- Wrap the article title with an anchor tag that contains the article URL -->
       <a href="{{ url_for('read_article', article_url=article.url) }}" target="_blank">
@@ -42,140 +40,60 @@
     </div>
   {% endfor %}
 
+  {% for article in news_data %}
+  <div class="fruit">
+    <a href="{{ url_for('read_article', article_url=article.url) }}" target="_blank">
+      <h2>{{ article.title }}</h2>
+      <p>{{article.author}}</p>
+      <p>{{ article.description }}</p>
+    </a>
+  </div>
+{% endfor %}
+
 </body>
 
 <style>
   /* CSS styles for the home page */
 body {
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #00bcd4, #ffeb3b); /* Gradient color scheme */
-  margin: 0;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+  font-family: 'Share Tech', sans-serif;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+
+}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+form {
+  text-align: center;
 }
 
 h1 {
   color: #333;
-}
-
-/* Unique background color for the navbar */
-.navbar {
-  display: flex;
-  background-color: #615e5e; /* Set the background color for the navbar */
-  justify-content: flex-start;
-}
-
-/* Navbar links to the top left */
-.navbar a {
-  display: block;
-  color: #f9f4f4;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
 }
 
-/* Hover effect for navbar links */
-.navbar a:hover {
-  background-color: #111;
-}
-
-/* Dropdown styles */
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-.dropdown .dropbtn {
-  font-weight: bold;
-  border: none;
-  outline: none;
-  color: #fff;
-  background-color: inherit;
-  font-family: inherit;
-  margin: 0;
-  padding: 14px 16px;
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.dropdown:hover .dropbtn {
-  background-color: #111;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: #333;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-}
-
-.dropdown-content a:hover {
-  background-color: #ddd;
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-.container {
+.header-container {
+  color: black;
   position: relative;
   display: flex;
   justify-content: center;
-  flex-direction:row;
+  flex-direction: column;
   align-items: center;
   gap: 100px 50px;
   padding: 100px 50px;
 }
-.form-wrapper {
-  display: flex;
-  gap: 20px;
-}
 
-.news-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.news-item {
-  width: 100%;
-  max-width: 400px;
-  margin-bottom: 20px;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-.news-item:hover {
-  background-color: #f9f9f9;
-}
-
-.news-title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.news-description {
-  color: #333;
-}
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
 
@@ -186,112 +104,22 @@ h1 {
   font-family: 'Poppins', sans-serif;
 }
 
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(45deg, #00bcd4, #ffeb3b);
-}
-
-.container .card {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 350px;
-  height: 300px;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 35px 80px rgba(0, 0, 0, 0.15);
-  transition: 0.5s;
-}
-
-.container .card:hover {
-  height: 400px;
-}
-
-.container .card .imgBx {
-  position: absolute;
-  top: 20px;
-  width: 300px;
-  height: 220px;
-  background: #333;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: 0.5s;
-}
-
-.container .card:hover .imgBx {
-  top: -100px;
-  scale: 0.75;
-  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.2);
-}
-
-.container .card .imgBx img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.container .card .content {
-  position: absolute;
-  top: 252px;
-  width: 100%;
-  padding: 0 30px;
-  height: 35px;
-  overflow: hidden;
-  text-align: center;
-  transition: 0.5s;
-}
-
-.container .card:hover .content {
-  top: 130px;
-  height: 250px;
-}
-
-.container .card .content h2 {
-  font-size: 1.5em;
-  font-weight: 700;
-  color: var(--clr);
-}
-
-.container .card .content p {
-  color: #333;
-}
-
-.container .card .content a {
-  position: relative;
-  top: 15px;
-  display: inline-block;
-  padding: 12px 25px;
-  background: var(--clr);
-  color: #fff;
-  font-weight: 500;
-  text-decoration: none;
-}
-
 .footer {
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
-.footer1 {
-  text-align: center;
-  color: black;
-}
 
 .fruit {
-  box-shadow: 0 2.5px 5px lightgray;
+  text-align: center;
+  justify-content: center;
+  box-shadow: 10px 10px 5px lightgray;
   border-radius: 10px;
-  padding: 10px;
+  padding: 30px;
 }
 
 .fruit:hover {
-  box-shadow: 0 2.5px 5px #21abde;
+  box-shadow: 0 2.5px 5px #011015;
   transition: .2s ease;
 }
 
